@@ -20,7 +20,7 @@ int main() {
 
   printf("Input the first number: ");
   scanf("%i", p1);
-  printf("\nInput the second number:");
+  printf("\nInput the second number: ");
   scanf("%i", p2);
 
   sum = *p1 + *p2;
