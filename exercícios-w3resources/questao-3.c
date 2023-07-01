@@ -5,34 +5,34 @@ int main(void) {
   float fx = 300.600006, *pf = &fx;
   char cht = 'z', *pc = &cht;
 
-  printf("\nPointer : Demonstrate the use of & and * operator : \n");   
+  printf("\nPointer : Demonstra o uso do operador & e * : \n");   
   printf("--------------------------------------------------------\n");
   printf("m = %d\n", m);
   printf("fx = %f\n", fx);
   printf("cht = %c\n\n", cht);
   
-  printf("Using & operator :\n");
+  printf("Usando o operador & :\n");
   printf("-----------------------\n");
-  printf("address of m = %p\n", &m);
-  printf("address of fx = %p\n", &fx);
-  printf("address of cht = %p\n\n", &cht);
+  printf("Endereco de m = %p\n", &m);
+  printf("Endereco de fx = %p\n", &fx);
+  printf("Endereco de cht = %p\n\n", &cht);
   
-  printf("Using & and * operator :\n");
+  printf("Usando o operador & e * :\n");
   printf("-----------------------------\n");
-  printf("value at address of m = %d\n", *(&m));
-  printf("value at address of fx = %f\n", *(&fx));
-  printf("value at address of cht = %c\n\n", *(&cht));
+  printf("Valor do endereco de m = %d\n", *(&m));
+  printf("Valor do endereco de fx = %f\n", *(&fx));
+  printf("Valor do endereco de cht = %c\n\n", *(&cht));
 
-  printf("Using only pointer variable :\n");
+  printf("Usando apenas a variavel ponteiro :\n");
   printf("----------------------------------\n");
-  printf("address of m = %p\n", pm);
-  printf("address of fx = %p\n", pf);
-  printf("address of cht = %p\n\n", pc);
+  printf("Endereco de m = %p\n", pm);
+  printf("Endereco de fx = %p\n", pf);
+  printf("Endereco de cht = %p\n\n", pc);
 
-  printf("Using only pointer operator :\n");
+  printf("Usando apenas o operador do ponteiro :\n");
   printf("----------------------------------\n");
-  printf("address of m = %p\n", *pm);
-  printf("address of fx = %p\n", *pf);
-  printf("address of cht = %p\n\n", *pc);
+  printf("Endereco de m = %p\n", *pm);
+  printf("Endereco de fx = %p\n", *pf);
+  printf("Endereco de cht = %p\n\n", *pc);
   return 0;
 }

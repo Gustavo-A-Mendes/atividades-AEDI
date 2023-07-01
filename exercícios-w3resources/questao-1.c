@@ -4,17 +4,16 @@ int main(void) {
   int m = 10, n, o;
   int *z = &m;
   
-  printf("\nPointer : Show the basic declaration of pointer :\n");
-  printf("-------------------------------------------------\n");
-  printf("Here is m=10, n and o are two integer variable and *z is an integer\n\n");
-  printf("z stores the address of m  = %p\n\n", z); // z is a pointer so %p would print the address
-  printf("*z stores the value of m = %d\n\n", *z);
-  printf("&m is the address of m = %p\n\n", &m);  // &m gives the address of the integer variable m 
-                             // so %p is the specifier for that address
-  printf("&n stores the address of n = %p\n\n", &n);
-  printf("&o  stores the address of o = %p\n\n", &o);                                                           
-  printf("&z stores the address of z = %p\n\n", &z);  // &z gives the address, where the pointer z is 
-                             // stored -> still an address -> %p is the right
-                             // specifier        
+  printf("\nPointer : Mostra a declaracao basica de um ponteiro:\n");
+  printf("-------------------------------------------------------\n");
+  printf("Aqui m=10, n e o sao duas variaveis inteiras e *z e inteiro\n\n");
+  printf("z armazena o endereco de m = %p\n\n", z); // z e um ponteiro entao %p deve imprimir o endereco
+  printf("*z armazena o valor de m = %d\n\n", *z);
+  printf("&m e o endereco de m = %p\n\n", &m);  // &m da o endereco da variavel inteira m
+                             // entao %p e specifier para esse endereco
+  printf("&n armazena o endereco de n = %p\n\n", &n);
+  printf("&o armazena o endereco de o = %p\n\n", &o);                                                           
+  printf("&z armazena o endereco de z = %p\n\n", &z);  // &z da o entedereco, onde o ponteiro z e 
+                             // armazenado -> ainda um endereco -> %p e o specifier correto
   return 0;
 }

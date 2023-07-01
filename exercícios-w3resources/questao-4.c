@@ -18,14 +18,14 @@ int main() {
   int num1, num2, sum;
   int *p1 = &num1, *p2 = &num2;
 
-  printf("Input the first number: ");
+  printf("Digite o primeiro numero: ");
   scanf("%i", p1);
-  printf("\nInput the second number: ");
+  printf("\nDigite o segundo numero: ");
   scanf("%i", p2);
 
   sum = *p1 + *p2;
 
-  printf("\nThe sum of the entered numbers is : %d", sum);
+  printf("\nA soma dos numeros inseridos e igual: %d", sum);
    
   return 0;
 }

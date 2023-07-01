@@ -1,24 +1,25 @@
 #include <stdio.h>
 
-long soma (int *, int *); // por que usar ?
+long soma (long *, long *); // por que usar ?
 
-int main(void) {
-  int num1, num2, sum;
-  int *p1 = &num1, *p2 = &num2;
+long main(void) {
+  long num1, num2, sum;
+  long *p1 = &num1, *p2 = &num2;
 
-  printf("Input the first number: ");
-  scanf("%i", p1);
-  printf("Input the second number:");
-  scanf("%i", p2);
+  printf("Digite o primeiro numero: ");
+  scanf("%d", p1);
+  printf("Digite o segundo numero: ");
+  scanf("%d", p2);
 
   sum = soma(p1, p2);
 
-  printf("\nThe sum of %d and %d is : %d", num1, num2, sum);
+  printf("\nA soma de %d e %d e igual : %d", num1, num2, sum);
   
   return 0;
 }
 
-long soma (int *n1, int *n2) {
+long soma (long *n1, long *n2) {
   long sum = *n1 + *n2;
+
   return sum;
 }
