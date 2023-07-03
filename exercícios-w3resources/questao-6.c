@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// Esse código imprime o maior valor inserido
 int numeroMaximo(int *, int *);
 
 int main(void) {
