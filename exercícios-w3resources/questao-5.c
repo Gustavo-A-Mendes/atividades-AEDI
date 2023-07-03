@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-long soma (long *, long *); // por que usar ?
+long soma (long *, long *); // protótipo da função declarada após o main
 
 long main(void) {
   long num1, num2, sum;
