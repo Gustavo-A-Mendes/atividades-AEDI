@@ -8,7 +8,7 @@ int main(void) {
   char texto[25] = ""; // estabelece um tamanho maximo
   
   printf("Test Data: ");
-  scanf("%s[^\n]", texto);//le o resto da linha sem incluir \n
+  scanf("%[^\n]", texto);//le o resto da linha sem incluir \n
 
   int len = stringLen(texto);
   printf("O tamanho da string %s dada e: %d", texto, len);
