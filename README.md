@@ -4,7 +4,7 @@ Atividades relacionadas a disciplina de Algoritmos e Estrutura de Dados I, em li
 <div>
   <ol>
     <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/exercicios%20de%20fixacao">Exercícios de Fixação</a></li>
-    <ul>
+    <ul type="disc">
       <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/exercicios%20de%20fixacao/1_ponteiros">Ponteiros</a></li>
       <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/exercicios%20de%20fixacao/2_alocacao%20de%20memoria">Alocação de Memória</a></li>
     </ul>
