@@ -1,15 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(void) {
   int n = 5;
-
-  char *genero = (char*) malloc(n*sizeof(char));
-  char *gostou = (char*) malloc(n*sizeof(char));
+  
+  int linhas = 2, colunas = n;
+  char **matrizPerguntas = (char **)malloc(linhas * sizeof(char*));
+  int coluna;
+  for (coluna = 0; coluna < colunas; coluna++) {
+    matrizPerguntas[coluna] = (char*)malloc(colunas * sizeof(char));
+  }
+  
   int i = 0;
   for (i = 0; i < n; i++) {
     printf("genero [M/F]: ");
-    scanf("%s[^\n]", (genero+i));
+    scanf("%s", &(matrizPerguntas[0][i]));
+    // printf("opiniao sobre o produto [gostou/nao gostou]: ");
+    // scanf("%s[^\n]", &(matrizPerguntas[1][i]));
+  }
+
+  int len = strlen(matrizPerguntas[0]);
+  for (int i = 0; i < colunas; i++) {
+    char teste = *(matrizPerguntas[0]+i);
+    printf("%s \t", matrizPerguntas[0][i]);
   }
   
   // for (int i = 0; i < n; i++) { 
