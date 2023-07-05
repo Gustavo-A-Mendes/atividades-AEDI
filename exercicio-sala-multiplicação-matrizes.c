@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int **alocaMatriz(int, int);
+void limpaMemoria(int**, int);
 
 int main(void) {
   int linhas = 5, colunas = 5;
@@ -19,10 +20,7 @@ int main(void) {
     printf("\n");
   }
 
-  for (linha = 0; linha < linhas; linha++) {
-    free(matrizA[linha]);
-  }
-  free(matrizA);
+  limpaMemoria(matrizA, linhas);
 
   return 0;
 }
@@ -44,4 +42,13 @@ int **alocaMatriz(int Ls, int Cs) {
     }
   }
   return matriz;
+}
+
+void limpaMemoria(int **mat, int Ls) {
+  int l;
+  for (l = 0; l < Ls; l++) {
+    free(mat[l]);
+  }
+  free(mat);
+
 }
