@@ -1,2 +1,2 @@
-# ponteiros
-Atividades do estudo de ponteiros em linguagem C
+# Algoritmos e Estrutura de Dados I
+Atividades relacionadas a disciplina de Algoritmos e Estrutura de Dados I, em linguagem C.
