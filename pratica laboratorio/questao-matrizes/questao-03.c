@@ -1,12 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
+
+
+/*
+  O programa imprime os valores de uma matriz quadrada de tamanho definido pelo usuário.
+  É alocado memória dinamicamente e preenche a matriz com valores aleatórios de 1 a 100.
+*/
 
 int linha, coluna;
 int **alocaMatrizQ(int);
 void imprimeMatriz(int**, int);
 
 int main(void) {
+
+  srand(time(0)); // muda a seed da geração aleatória a cada execução
 
   int n;
   printf("Digite o tamanho da matriz quadrada: ");
@@ -18,11 +27,12 @@ int main(void) {
   // preenche a matriz com valores aleatórios entre 1 e 100
   for (linha = 0; linha < n; linha++) {
     for (coluna = 0; coluna < n; coluna++) {
-      int ram = 1 + (rand() % 100);
-      matriz[linha][coluna] = ram;
+      int ran = 1 + (rand() % 100);   //  % calcula o resto da divisão por 100 (retorna de 0 a 99)
+      matriz[linha][coluna] = ran;
     }  
   }
 
+  // imprime a matriz quadrada
   imprimeMatriz(matriz, n);
 
   // limpa memoria após o uso

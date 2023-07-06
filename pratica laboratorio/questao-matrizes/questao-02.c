@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+  O programa imprime os valores de uma matriz e sua transposta. É alocado memória dinamicamente para as matrizes
+  e é solicitado ao usuário o número de linhas, colunas, além dos valores para preenchê-las.
+*/
 
 int linha, coluna;
 int **alocaMatriz(int, int);

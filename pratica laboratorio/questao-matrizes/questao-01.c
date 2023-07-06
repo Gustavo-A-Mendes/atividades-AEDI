@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+  O programa imprime os elementos de um vetor na ordem inversa. É alocado memória dinamicamente
+  e é solictado pelo usuário o tamanho do vetor, bem como os valores para preenchê-lo.
+*/
+
 int main(void) {
 
   int tamanho;
@@ -27,6 +32,7 @@ int main(void) {
     printf("\nelemento %d: %d", contador, *(vetor+(contador)));
   }
 
+  // limpa memória
   free(vetor);
 
   return 0;
