@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int linha, coluna;
 int **alocaMatrizQ(int);
