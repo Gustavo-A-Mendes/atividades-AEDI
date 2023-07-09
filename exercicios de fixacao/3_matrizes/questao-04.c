@@ -26,7 +26,7 @@ int main (void) {
   if (nomes == NULL) exit(1); // Falha ao alocar memória
 
   int *idades = (int*)calloc(numPessoas,sizeof(int));
-  if (idades == NULL) exit(1); // Falha ao alocar memória
+  if (idades == NULL) exit(1);
 
   for (i = 0; i < numPessoas; i++) {
     nomes[i] = (char*)malloc(50*sizeof(char));  // tamanho máximo: 50 caracteres
