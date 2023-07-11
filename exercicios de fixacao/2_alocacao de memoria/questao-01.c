@@ -2,59 +2,72 @@
 #include <stdlib.h>
 #include <string.h>
 
+// mudar cor dos textos
+#define txtRed "\x1b[31m"
+#define txtGreen "\x1b[32m"
+#define txtReset "\x1b[0m"
 
 int i, j;
-int analisaVotos(int, char**, char**, char*, char*);
+float analisaVotos(char*, char*, char*, char*);
 
 int main(void) {
+  printf(txtReset); // reseta cor
+
   int n = 0;
-  printf("\nInforme o numero de pessoas que vao votar: \n");
+  float F_Sim = 0, M_Nao = 0;
+  printf("\nInforme o numero de pessoas entrevistadas: \n");
   scanf("%d",&n);
   
-  char **generos = (char **)malloc(n * sizeof(char *));
-  char **opinioes = (char **)malloc(n * sizeof(char *));
+  // aloca memória para os vetores
+  char *sexos = (char *)malloc(n * sizeof(char));
+  if (sexos == NULL) exit(1);
+  char *opinioes = (char *)malloc(n * sizeof(char));
+  if (opinioes == NULL) exit(1);
   
   for (i = 0; i < n; i++) {
-    int charInvalido;
+    printf(txtGreen "\n===== ENTREVISTADO %d =====\n" txtReset, i+1);
     
-    generos[i] = (char *)malloc(2 * sizeof(char));
+    int charInvalido;
     do {
-      printf("\ngenero [M/F]: ");
-      scanf(" %1[^\n]", generos[i]); // guarda apenas o primeiro caracter
+      printf("\nSexo do entrevistado: \nM - Masculino\nF - Feminino\n");
+      scanf(" %1[^\n]", sexos+i); // guarda apenas o primeiro caracter
       fflush(stdin); // limpa o buffer de saida
-
-      charInvalido = strcmpi(generos[i], "M") && strcmpi(generos[i], "F");
-      if (charInvalido) printf("Digite uma opcao valida!\n");
+      // checa se o valor de entrada é um valor válido
+      charInvalido = strcmpi(sexos+i, "M") && strcmpi(sexos+i, "F");
+      if (charInvalido) printf(txtRed "Valor Invalido!\n" txtReset);
     } while (charInvalido);
 
-    opinioes[i] = (char *)malloc(2 * sizeof(char));
     do {
-      printf("Voce gostou do produto? [S/N]: ");
-      scanf(" %1[^\n]", opinioes[i]);
+      printf("\nVoce gostou do produto?\nS - Sim\nN - Nao\n");
+      scanf(" %1[^\n]", opinioes+i);
       fflush(stdin);
-      charInvalido = strcmpi(opinioes[i], "S") && strcmpi(opinioes[i], "N");
-      if (charInvalido) printf("Digite uma opcao valida!\n");
-    } while (charInvalido); 
-  }
 
-  int F_Sim = analisaVotos(n, generos, opinioes, "F", "S");
-  int M_Nao = analisaVotos(n, generos, opinioes, "M", "N");
-  printf("%d%% das mulheres gostaram\n", F_Sim);
-  printf("%d%% dos homens nao gostaram\n", M_Nao);
+      charInvalido = strcmpi(opinioes+i, "S") && strcmpi(opinioes+i, "N");
+      if (charInvalido) printf(txtRed "Valor Invalido!\n" txtReset );
+    } while (charInvalido);
+    
+    // incrementa as estatísticas desejadas
+    F_Sim += analisaVotos(sexos+i, opinioes+i, "F", "S");
+    M_Nao += analisaVotos(sexos+i, opinioes+i, "M", "N");
+
+  }
+  // converte para percentual
+  F_Sim = (F_Sim/n)*100.0;
+  M_Nao = (M_Nao/n)*100.0;
+
+  printf("%.2f%% das mulheres gostaram do produto.\n", F_Sim);
+  printf("%.2f%% dos homens nao gostaram do produto.\n", M_Nao);
+
+  free(sexos);
+  free(opinioes);
 
   return 0;
 }
 
-int analisaVotos(int qnt, char **genero, char **opiniao, char *ch1, char *ch2) {
+float analisaVotos(char *genero, char *opiniao, char *ch1, char *ch2) {
   float count = 0, percentual;
-  for (i=0; i < qnt; i++) {
-    for (j = 0; genero[i][j] != '\0' < count; j++) {
-      // printf("%s\t%s\n", &genero[i][j], &opiniao[i][j]);
-      if (!(strcmpi(&genero[i][j], ch1) || strcmpi(&opiniao[i][j], ch2))) {
-        count++;
-      };
-    }
+  if (!(strcmpi(genero, ch1) || strcmpi(opiniao, ch2))) {
+    return 1;
   }
-  percentual = 100 * (count/qnt);
-  return percentual;
+  return 0;
 }
