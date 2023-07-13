@@ -34,6 +34,8 @@ int main(void) {
 
   salarioMaiorMenor(funcionario);
 
+  free(funcionario);  // Limpa memória
+
   return 0;
 }
 
@@ -49,13 +51,13 @@ Funcionario *cadastro(Funcionario *f) {
     printf(txtGreen"\n====== FUNCIONARIO %d ======\n"txtReset, i+1);
     
     printf("Digite o Nome do funcionario: ");
-    scanf(" %[^\n]", (f+i)->nome);
+    scanf(" %30[^\n]", (f+i)->nome);
     
     printf("Digite o ID: ");
     scanf("%d", &(f+i)->id);
 
     printf("Digite o nome do Cargo: ");
-    scanf(" %[^\n]", (f+i)->cargo);
+    scanf(" %30[^\n]", (f+i)->cargo);
 
     printf("Digite o valor do Salario: ");
     scanf("%f", &(f+i)->salario);
