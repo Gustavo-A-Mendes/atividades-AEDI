@@ -3,7 +3,7 @@
     {
       "type": "cppbuild",
       "label": "C/C++: gcc.exe arquivo de build ativo",
-      "command": "C:\\MinGW\\bin\\gcc.exe",
+      "command": "D:\\Users\\gusta\\Downloads\\MinGW\\gcc.exe",
       "args": [
         "-fdiagnostics-color=always",
         "-g",
