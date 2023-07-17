@@ -100,22 +100,18 @@ void alteraSalario (Funcionario *f) {
 
 void salarioMaiorMenor (Funcionario *f) {
   int idMaior, idMenor;
-  float maior, menor;
   idMaior = idMenor = 0;
-  maior = menor = f[0].salario;
   for (i = 1; i<numFuncionarios ; ++i) {
-    if ((maior < f[i].salario)) {
-      maior = f[i].salario;
+    if ((f[i].salario > f[idMaior].salario)) {
       idMaior = i;
     }
-    if (menor > f[i].salario) {
-      menor = f[i].salario;
+    if (f[i].salario < f[idMenor].salario) {
       idMenor = i;
     }
   }
 
-  printf ("\nO funcionario "txtCyan"%s"txtReset", "txtCyan"%s"txtReset", possui o maior salario, de "txtCyan"R$ %.2f\n"txtReset, f[idMaior].nome, f[idMaior].cargo, maior);
-  printf ("\nO funcionario "txtCyan"%s"txtReset", "txtCyan"%s"txtReset", possui o menor salario, de "txtCyan"R$ %.2f\n"txtReset, f[idMenor].nome, f[idMenor].cargo, menor);
+  printf ("\nO funcionario "txtCyan"%s"txtReset", "txtCyan"%s"txtReset", possui o maior salario, de "txtCyan"R$ %.2f\n"txtReset, f[idMaior].nome, f[idMaior].cargo, f[idMaior].salario);
+  printf ("\nO funcionario "txtCyan"%s"txtReset", "txtCyan"%s"txtReset", possui o menor salario, de "txtCyan"R$ %.2f\n"txtReset, f[idMenor].nome, f[idMenor].cargo, f[idMenor].salario);
 }
 
 int checaValido(char *ch1) {
