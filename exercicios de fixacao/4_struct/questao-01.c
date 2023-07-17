@@ -2,13 +2,20 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-// mudar cor dos textos
+/*
+  Esse programa cria um tipo estruturado para cadastrar dados de funcionários.
+  O programa deve imprimir esses dados, permitir que alteremos o valor de salário
+  e verificar o cargo do funcionário de maior e menor salário.
+*/
+
+// Variáveis para mudar cor dos textos
 #define txtRed "\x1b[31m"
 #define txtGreen "\x1b[32m"
 #define txtYellow "\x1b[33m"
 #define txtCyan "\x1b[36m"
 #define txtReset "\x1b[0m"
 
+// Tipo estruturado para armazenar os dados do funcionário:
 typedef struct funcionarios {
   char nome[30];
   float salario;
@@ -16,6 +23,7 @@ typedef struct funcionarios {
   char cargo[30];
 } Funcionario;
 
+// protótipo das funções criadas:
 Funcionario *cadastro(Funcionario *);
 void imprimiDados(Funcionario *);
 void alteraSalario (Funcionario *);
@@ -27,6 +35,9 @@ int numFuncionarios;
 
 int main(void) {
   printf(txtReset); // reseta cor
+  
+  printf("Insira o numero de funcionarios: ");
+  scanf("%d", &numFuncionarios);
 
   Funcionario *funcionario = cadastro(funcionario);
   
@@ -39,11 +50,12 @@ int main(void) {
   return 0;
 }
 
+/*
+  Função que aloca espaço na memória para o tipo estruturado,
+  recebe os dados e preenche nos campos de cada funcionário:
+*/
 Funcionario *cadastro(Funcionario *f) {
   
-  printf("Insira o numero de funcionarios: ");
-  scanf("%d", &numFuncionarios);
-
   f = (Funcionario *)malloc(numFuncionarios*sizeof(Funcionario));
   if (f==NULL) exit(1);
   
@@ -67,6 +79,10 @@ Funcionario *cadastro(Funcionario *f) {
   return f;
 }
 
+/*
+  Função que recebe como parâmetro o vetor de funcionários e
+  imprime seus dados:
+*/
 void imprimiDados(Funcionario *f) {
 
     printf("\nDados recebidos:\n");
@@ -76,6 +92,10 @@ void imprimiDados(Funcionario *f) {
   
 }
 
+/*
+  Função que pergunta ao usuário se deseja alterar o salário
+  do funcionário, antes de finalizar o cadastro:
+*/
 void alteraSalario (Funcionario *f) {
   
   printf(txtYellow"\nEsse valor de Salario esta correto? [S/N]\n"txtReset);
@@ -98,6 +118,10 @@ void alteraSalario (Funcionario *f) {
   }
 }
 
+/*
+  Função que retorna o nome e cargo do funcionário com maior
+  e com menor salário:
+*/
 void salarioMaiorMenor (Funcionario *f) {
   int idMaior, idMenor;
   idMaior = idMenor = 0;
@@ -114,6 +138,9 @@ void salarioMaiorMenor (Funcionario *f) {
   printf ("\nO funcionario "txtCyan"%s"txtReset", "txtCyan"%s"txtReset", possui o menor salario, de "txtCyan"R$ %.2f\n"txtReset, f[idMenor].nome, f[idMenor].cargo, f[idMenor].salario);
 }
 
+/*
+  Função para verificar se o valor de resposta é valido ou não:
+*/
 int checaValido(char *ch1) {
   *ch1 = toupper(*ch1); 
   if (*ch1 == 'S' || *ch1 == 'N') {

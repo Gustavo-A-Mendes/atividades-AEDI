@@ -2,26 +2,29 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-// mudar cor dos textos
+// Variáveis para mudar cor dos textos:
 #define txtRed "\x1b[31m"
 #define txtGreen "\x1b[32m"
 #define txtYellow "\x1b[33m"
 #define txtCyan "\x1b[36m"
 #define txtReset "\x1b[0m"
 
+// Tipo estruturado para armazenar os dados da pessoa:
 typedef struct pessoa {
   char nome[30];
   int RG;
   int idade;
 } Pessoa;
 
-int i;
-int numPessoa;
-int checaValido(char *);
+// protótipo das funções criadas:
+Pessoa *dadosPessoa(Pessoa *);
 void imprimiDados(Pessoa *);
 void atualizaDados(Pessoa *);
 void idadeMaiorMenor(Pessoa *);
-Pessoa *dadosPessoa(Pessoa *);
+int checaValido(char *);
+
+int i;
+int numPessoa;
 
 int main(void) {
   printf(txtReset);
@@ -32,11 +35,15 @@ int main(void) {
 
   idadeMaiorMenor (pessoa);
 
-  free(pessoa);
+  free(pessoa); // libera memória
 
   return 0;
 }
 
+/*
+  Função que aloca espaço na memória para o tipo estruturado,
+  recebe os dados e preenche nos campos de cada pessoa:
+*/
 Pessoa *dadosPessoa(Pessoa *p) {
   
   printf("Insira o numero de pessoas a serem cadastradas: ");
@@ -63,6 +70,10 @@ Pessoa *dadosPessoa(Pessoa *p) {
   return p;
 }
 
+/*
+  Função que recebe como parâmetro o vetor de pessoas e
+  imprime seus dados:
+*/
 void imprimiDados(Pessoa *p) {
 
   printf("\nDados recebidos:\n");
@@ -72,6 +83,10 @@ void imprimiDados(Pessoa *p) {
   
 }
 
+/*
+  Função que pergunta ao usuário se deseja alterar algum
+  dado da pessoa, antes de finalizar o cadastro:
+*/
 void atualizaDados(Pessoa *p) {
   
   printf(txtYellow"\nConfirma os dados inseridos? [S/N]\n"txtReset);
@@ -119,26 +134,29 @@ void atualizaDados(Pessoa *p) {
   }
 }
 
+/*
+  Função que retorna o nome e a idade da pessoa com maior
+  e com menor salário:
+*/
 void idadeMaiorMenor (Pessoa *p) {
   int idMaior, idMenor;
-  int maior, menor;
   idMaior = idMenor = 0;
-  maior = menor = p[0].idade;
   for (i = 1; i<numPessoa ; ++i) {
-    if ((maior < p[i].idade)) {
-      maior = p[i].idade;
+    if ((p[i].idade > p[idMaior].idade)) {
       idMaior = i;
     }
-    if (menor > p[i].idade) {
-      menor = p[i].idade;
+    if (p[i].idade < p[idMenor].idade) {
       idMenor = i;
     }
   }
 
-  printf ("\nO funcionario "txtCyan"%s"txtReset" e a pessoa mais velha, com "txtCyan"%d"txtReset" anos", p[idMaior].nome, maior);
-  printf ("\nO funcionario "txtCyan"%s"txtReset" e a pessoa mais nova, com "txtCyan"%d"txtReset" anos", p[idMenor].nome, menor);
+  printf ("\nA pessoa "txtCyan"%s"txtReset" e a pessoa mais velha, com "txtCyan"%d"txtReset" anos", p[idMaior].nome, p[idMaior].idade);
+  printf ("\nA pessoa "txtCyan"%s"txtReset" e a pessoa mais nova, com "txtCyan"%d"txtReset" anos", p[idMenor].nome, p[idMenor].idade);
 }
 
+/*
+  Função para verificar se o valor de resposta é valido ou não:
+*/
 int checaValido(char *ch1) {
   *ch1 = toupper(*ch1); 
   if (*ch1 == 'S' || *ch1 == 'N') {
