@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+/*
+  Esse programa cria um tipo estruturado para cadastrar dados de pessoas.
+  O programa deve imprimir esses dados, permitir que alteremos algum dado
+  e verificar o nome da pessoa de maior idade e menor idade.
+*/
+
 // Variáveis para mudar cor dos textos:
 #define txtRed "\x1b[31m"
 #define txtGreen "\x1b[32m"
