@@ -17,7 +17,7 @@ int main(void) {
   ContaBancaria *var_conta = (ContaBancaria *)malloc(5*sizeof(ContaBancaria));
   
   int i;
-  for (i = 0; i < 5; i++) {
+0  for (i = 0; i < 5; i++) {
     printf("\n====== PESSOA %d ======\n", i+1);
 
 
