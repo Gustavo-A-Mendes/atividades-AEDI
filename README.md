@@ -12,6 +12,7 @@ Atividades relacionadas a disciplina de Algoritmos e Estrutura de Dados I e Labo
       <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/exercicios%20de%20fixacao/3_matrizes">Matrizes</a></li>
     </ul>
     <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/exercicios-w3resources">Exercícios da w3resources</a></li>
+    <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/pratica-aula%20teorica/aula%2023-07-18">(Exercício) Vetor de ponteiros para estruturas</a></li>
   </ol>
 </div>
 
