@@ -32,6 +32,10 @@ int main(void) {
   retira(10, tab, 0);
   retira(10, tab, 1);
   retira(10, tab, 2);
+  imprime_tudo(10, tab);
+  preenche(10, tab, 2);
+  imprime_tudo(10, tab);
+
 
   return 0;
 }
@@ -64,11 +68,11 @@ void preenche (int n, Aluno **tab, int i) {
   printf("Entre com a matricula: ");
   scanf("%d", &tab[i]->mat);
   printf("Entre com o nome: ");
-  scanf(" %80[^\n]", &tab[i]->nome);
+  scanf(" %80[^\n]", tab[i]->nome);
   printf("Entre com o endereco: ");
-  scanf(" %120[^\n]", &tab[i]->end);
+  scanf(" %120[^\n]", tab[i]->end);
   printf("Entre com o telefone: ");
-  scanf(" %20[^\n]", &tab[i]->tel);
+  scanf(" %20[^\n]", tab[i]->tel);
 }
 
 /*

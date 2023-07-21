@@ -5,5 +5,13 @@
     "math.h": "c",
     "stdlib.h": "c",
     "ctype.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled",
+  "[c]": {
+    "editor.columnSelection": false,
+    "editor.hideCursorInOverviewRuler": false,
+    "editor.minimap.autohide": true,
+    "editor.renderLineHighlightOnlyWhenFocus": false,
+    "editor.smoothScrolling": false
   }
 }
