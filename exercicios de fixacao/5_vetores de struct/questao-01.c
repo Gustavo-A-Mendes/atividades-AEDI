@@ -35,9 +35,6 @@ void imprime_alunos(Turma*);
 void imprime_turmas(Turma**, int);
 Turma *procura_turma(Turma**, int, char);
 void exclui_turma(Turma**, int);
-void copia_valores(Turma*, Turma*);
-
-
 
 int count_turmas = 0;
 int i, j;
@@ -46,19 +43,23 @@ int main(void) {
   
   inicializa(turmas);
   
-
   printf("\n\nBem-vindo ao Programa de Gerenciamento de Turmas!\n");
   printf("Este programa gerencia as turmas ofertadas, fornecendo as funcionalidades de matricula, lancamento de todas e listagem de alunos.\n");
   printf("Autor: Gustavo Mendes Versao: 1.0\n");
 
   menu();
+  printf("\nObrigado por usar este programa!");
 
   for (i = 0; i < MAX_TURMAS; i++) {
+    printf("oi");
     for (j = 0; j < MAX_VAGAS; j++) {
+      printf("oi");
       free(turmas[i]->alunos[j]);
     }
     free(turmas[i]);
   }
+
+  printf("\nObrigado por usar este programa!");
   
   return 0;
 }
@@ -72,7 +73,7 @@ void inicializa(Turma **t) {
 
 
 void menu(void) {
-  int n;
+  int n = 0;
   
   while (n != 7) {
     printf("\nMENU:\n");
@@ -86,7 +87,6 @@ void menu(void) {
     printf("7 - Sair\n");
     printf("\nDigite sua opcao: ");
     scanf("%d", &n);
-    
 
     int valMAT;
     int indice;
@@ -104,12 +104,14 @@ void menu(void) {
         if (count_turmas >= 1) {
           turma = procura_turma(turmas, count_turmas, chID[0]);
           if (turma == NULL) {
-            turmas[count_turmas++] = cria_turma(chID[0]);
+            turmas[count_turmas] = cria_turma(chID[0]);
+            count_turmas++;
           } else {
             printf("Turma %s ja existe", chID);
           }
         } else {
-          turmas[count_turmas++] = cria_turma(chID[0]);
+          turmas[count_turmas] = cria_turma(chID[0]);
+          count_turmas++;
         }
 
         break;
@@ -172,15 +174,16 @@ void menu(void) {
           }
         }
         
-        if (turma != NULL) exclui_turma(turmas, indice);
+        if (turma != NULL) {
+          exclui_turma(turmas, indice);
+          count_turmas--;
+        }
         else printf("Turma %s Inexistente!\n", chID);
 
-        count_turmas--;
         break;
       case 7:
         printf("\nObrigado por usar este programa!");
         break;
-
       default:
         printf("Valor Invalido! Tente Novamente.\n");
         break;
@@ -225,12 +228,12 @@ Turma *procura_turma(Turma** turma, int n, char id) {
 
 
 void imprime_turmas(Turma** t, int n) {
-  int vagasCount = 0;
+  printf("%d", count_turmas);
   printf("\nListando turmas...\n");
   if(n != 0) {
-  for (i = 0; i < n; i++) {
+    for (i = 0; i < n; i++) {
       printf("TURMA %c - %d vagas disponiveis\n", t[i]->id, t[i]->vagas);
-  }
+    }
   } else {
     printf("Nao ha turmas criadas!\n");
   }
@@ -249,11 +252,14 @@ void matricula_aluno(Turma *turma, int mat, char *nome) {
   if (turma->alunos[count_alunos] == NULL) {
     turma->alunos[count_alunos] = (Aluno*)calloc(1, sizeof(Aluno));
     if (turma->alunos[count_alunos] == NULL) exit(1); // Se não conseguir alocar    
+    
+    turma->alunos[count_alunos]->mat = mat;
+    strcpy(turma->alunos[count_alunos]->nome, nome);
+
   } else {
     printf("Matrícula já existente!");
+  
   }
-  turma->alunos[count_alunos]->mat = mat;
-  strcpy(turma->alunos[count_alunos]->nome, nome);
 
 
   printf("Aluno %s matriculado com sucesso!\n", turma->alunos[count_alunos]->nome);
@@ -299,26 +305,17 @@ void imprime_alunos(Turma *turma) {
 void exclui_turma(Turma **t, int indice) {
   if(t[indice]->vagas == MAX_VAGAS) {
     printf("Turma %c excluida!\n", t[indice]->id);
+    t[indice] = NULL;
     free(t[indice]);
 
     for (i = indice; i < count_turmas; i++) {
-      copia_valores(t[i], t[i+1]);
-      // t[i] = t[i+1];
-      // if (i == indice - 2) {
-      //   t[i+1] = NULL;
-      //   free(t[i+1]);   
-      // }
+      t[i] = t[i+1];
+      if (i == indice - 2) {
+        t[i+1] = NULL;
+        free(t[i+1]);   
+      }
     }
   } else {
     printf("Ha alunos matriculados! Nao foi possivel excluir a turma.");
   }
-}
-
-void copia_valores(Turma *turma_dst, Turma *turma_src) {
-  
-  memcpy(turma_dst->alunos, turma_src->alunos, sizeof(Aluno));
-  memcpy(&turma_dst->id, &turma_src->id, sizeof(turma_dst->id));
-  memcpy(&turma_dst->vagas, &turma_src->vagas, sizeof(turma_dst->vagas));
-
-  
 }
