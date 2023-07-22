@@ -29,6 +29,7 @@ void inicializa(Turma **);
 void menu(void);
 Turma *cria_turma (char);
 void matricula_aluno(Turma *, int, char*);
+int procura_aluno(Turma *, int);
 void lanca_notas(Turma *);
 void imprime_alunos(Turma*);
 void imprime_turmas(Turma**, int);
@@ -121,11 +122,12 @@ void menu(void) {
         } else {
           printf("Numero maximo de turmas atingido!\n");
         }
-
         break;
+      
       case 2:
         imprime_turmas(turmas, count_turmas);
         break;
+      
       case 3:
         printf("\nMatriculando aluno...\n");
         printf("Digite um id da turma: ");
@@ -137,16 +139,19 @@ void menu(void) {
         if (turma != NULL) {
           printf("Digite a matricula: ");
           scanf("%d", &valMAT);
-          printf("Digite o nome: ");
+          if (procura_aluno(turma, valMAT)) {
+            printf("Aluno ja se encontra matriculado!\n");
+          } else {
+            printf("Digite o nome: ");
+            scanf(" %80[^\n]", chNOME);
+            matricula_aluno(turma, valMAT, chNOME);
+          }
 
-          
-          scanf(" %80[^\n]", chNOME);
-          matricula_aluno(turma, valMAT, chNOME);
         } else {
           printf("Turma %s Inexistente!\n", chID);
-
         }
         break;
+      
       case 4:
         printf("\nLancando notas...\n");
         printf("Digite o id da turma: ");
@@ -158,6 +163,7 @@ void menu(void) {
         if (turma != NULL) lanca_notas(turma);
         else printf("Turma %s Inexistente!\n", chID);
         break;
+      
       case 5:
         printf("\nListando alunos...\n");
         printf("Digite o id da turma: ");
@@ -169,6 +175,7 @@ void menu(void) {
         if (turma != NULL) imprime_alunos(turma);
         else printf("Turma %s Inexistente!\n", chID);
         break;
+      
       case 6:
         printf("\nExcluindo turma...\n");
         printf("Digite o id da turma: ");
@@ -187,11 +194,12 @@ void menu(void) {
           exclui_turma(turmas, indice);
         }
         else printf("Turma %s Inexistente!\n", chID);
-
         break;
+      
       case 7:
         printf("\nObrigado por usar este programa!");
         break;
+      
       default:
         printf("Valor Invalido! Tente Novamente.\n");
         break;
@@ -280,6 +288,21 @@ void matricula_aluno(Turma *turma, int mat, char *nome) {
   else {
     printf("Limite maximo de alunos excedido!\n");
   }
+}
+
+/*
+  Função que verifica se um aluno já está matriculado
+  na turma.
+*/
+int procura_aluno(Turma *turma, int mat) {
+  int vagaOcupada = MAX_VAGAS - turma->vagas;
+
+  if (vagaOcupada != 0) {
+    for (i = 0; i < vagaOcupada; i++) {
+      if (turma->alunos[i]->mat == mat) return 1;
+    }
+  }
+  return 0;
 }
 
 /*
