@@ -118,7 +118,6 @@ void menu(void) {
           } else {
             printf("Turma %s ja existe", chID);
           }
-
         } else {
           printf("Numero maximo de turmas atingido!\n");
         }
@@ -139,6 +138,7 @@ void menu(void) {
         if (turma != NULL) {
           printf("Digite a matricula: ");
           scanf("%d", &valMAT);
+          
           if (procura_aluno(turma, valMAT)) {
             printf("Aluno ja se encontra matriculado!\n");
           } else {
@@ -146,7 +146,6 @@ void menu(void) {
             scanf(" %80[^\n]", chNOME);
             matricula_aluno(turma, valMAT, chNOME);
           }
-
         } else {
           printf("Turma %s Inexistente!\n", chID);
         }
