@@ -9,7 +9,6 @@
 // Tipo estruturado para armazenar os dados da aluno:
 typedef struct aluno {
   int mat;
-  // char *nome;
   char nome[81];
   float notas[3];
   float media;
@@ -39,39 +38,45 @@ void exclui_turma(Turma**, int);
 int count_turmas = 0;
 int i, j;
 
+
+/*
+  Esse programa é destinado a auxiliar o docente. Suas ferramentas permitem
+  criar novas turmas ou excluir turmas vazias, matricular alunos e lançar suas
+  notas, bem como vizualizar o status das turmas criadas e de seus alunos.
+*/
 int main(void) {
   
+  // Limpa a estrutura Turmas.
   inicializa(turmas);
   
   printf("\n\nBem-vindo ao Programa de Gerenciamento de Turmas!\n");
   printf("Este programa gerencia as turmas ofertadas, fornecendo as funcionalidades de matricula, lancamento de todas e listagem de alunos.\n");
   printf("Autor: Gustavo Mendes Versao: 1.0\n");
 
+  // Interface com as ferramentas
   menu();
-  printf("\nObrigado por usar este programa!");
 
+  // libera a memória.
   for (i = 0; i < MAX_TURMAS; i++) {
-    printf("oi");
-    for (j = 0; j < MAX_VAGAS; j++) {
-      printf("oi");
-      free(turmas[i]->alunos[j]);
-    }
     free(turmas[i]);
   }
 
-  printf("\nObrigado por usar este programa!");
-  
   return 0;
 }
 
-
+/*
+  Função que inicia a estrutura Turmas com valores nulos.
+*/
 void inicializa(Turma **t) {
   for (i = 0; i < MAX_TURMAS; i++) {
     t[i] = NULL;
   }
 }
 
-
+/*
+  Função que cria uma interface, com uma lista de opções 
+  para o usuário escolher entre as diversas ferramentas.
+*/
 void menu(void) {
   int n = 0;
   
@@ -101,7 +106,10 @@ void menu(void) {
         scanf(" %1[^\n]", chID);
         chID[0] = toupper(chID[0]);
         
-        if (count_turmas >= 1) {
+        if (count_turmas < 1) {
+          turmas[count_turmas] = cria_turma(chID[0]);
+          count_turmas++;
+        } else if (count_turmas < MAX_TURMAS) {
           turma = procura_turma(turmas, count_turmas, chID[0]);
           if (turma == NULL) {
             turmas[count_turmas] = cria_turma(chID[0]);
@@ -109,9 +117,9 @@ void menu(void) {
           } else {
             printf("Turma %s ja existe", chID);
           }
+
         } else {
-          turmas[count_turmas] = cria_turma(chID[0]);
-          count_turmas++;
+          printf("Numero maximo de turmas atingido!\n");
         }
 
         break;
@@ -130,9 +138,10 @@ void menu(void) {
           printf("Digite a matricula: ");
           scanf("%d", &valMAT);
           printf("Digite o nome: ");
+
+          
           scanf(" %80[^\n]", chNOME);
           matricula_aluno(turma, valMAT, chNOME);
-          turma->vagas--;
         } else {
           printf("Turma %s Inexistente!\n", chID);
 
@@ -176,7 +185,6 @@ void menu(void) {
         
         if (turma != NULL) {
           exclui_turma(turmas, indice);
-          count_turmas--;
         }
         else printf("Turma %s Inexistente!\n", chID);
 
@@ -191,7 +199,10 @@ void menu(void) {
   }
 }
 
-
+/*
+  Função que cria uma nova turma, alocando memória para a
+  struct, caso o limite de turma não for atingido.
+*/
 Turma *cria_turma (char id) {
   if (count_turmas < 0 || count_turmas >= MAX_TURMAS) {
     printf("Indice fora do limite do vetor\n");
@@ -205,30 +216,34 @@ Turma *cria_turma (char id) {
     for (i = 0; i < MAX_VAGAS; i++) {
       turmas[count_turmas]->alunos[i] = NULL;
     }
+    
+    id = toupper(id);
+
+    turmas[count_turmas]->id = id;
+    turmas[count_turmas]->vagas = MAX_VAGAS;
+    
+    printf("Turma %c criada com sucesso!\n", turmas[count_turmas]->id);
+    
+    return turmas[count_turmas];
   }
-
-  id = toupper(id);
-
-  turmas[count_turmas]->id = id;
-  turmas[count_turmas]->vagas = MAX_VAGAS;
-  
-  printf("Turma %c criada com sucesso!\n", turmas[count_turmas]->id);
-  return turmas[count_turmas];
 }
 
-
+/*
+  Função que procura um turma entre as turmas criadas
+  por meio do seu ID
+*/
 Turma *procura_turma(Turma** turma, int n, char id) {
   for (i = 0; i < n; i++) {
-    if (turma[i]->id == id) {
-      return turma[i];
-    }
+    if (turma[i]->id == id)  return turma[i];
   }
   return NULL;
 }
 
-
+/*
+  Função que imprime todas as turmas criadas
+*/
 void imprime_turmas(Turma** t, int n) {
-  printf("%d", count_turmas);
+  // printf("%d", count_turmas);
   printf("\nListando turmas...\n");
   if(n != 0) {
     for (i = 0; i < n; i++) {
@@ -239,34 +254,37 @@ void imprime_turmas(Turma** t, int n) {
   }
 }
 
-
+/*
+  Função que matricula um aluno em uma turma existente,
+  caso o limite de vagas não seja excedido.
+*/
 void matricula_aluno(Turma *turma, int mat, char *nome) {
 
   int count_alunos = MAX_VAGAS - turma->vagas;
 
-  if (count_alunos < 0 || count_alunos >= MAX_VAGAS) {
+  if (count_alunos < 0) {
     printf("Indice fora do limite do vetor\n");
     exit(1); // aborta o programa
   }
-
-  if (turma->alunos[count_alunos] == NULL) {
+  else if ((turma->alunos[count_alunos] == NULL) && (count_alunos < MAX_VAGAS)) {
     turma->alunos[count_alunos] = (Aluno*)calloc(1, sizeof(Aluno));
     if (turma->alunos[count_alunos] == NULL) exit(1); // Se não conseguir alocar    
     
     turma->alunos[count_alunos]->mat = mat;
     strcpy(turma->alunos[count_alunos]->nome, nome);
 
-  } else {
-    printf("Matrícula já existente!");
-  
+    printf("Aluno %s matriculado com sucesso!\n", turma->alunos[count_alunos]->nome);
+
+    turma->vagas--;
+  } 
+  else {
+    printf("Limite maximo de alunos excedido!\n");
   }
-
-
-  printf("Aluno %s matriculado com sucesso!\n", turma->alunos[count_alunos]->nome);
-  
 }
 
-
+/*
+  Função usada para registrar as notas dos alunos.
+*/
 void lanca_notas(Turma *turma) {
   if (turma->vagas < MAX_VAGAS) {
     for (i = 0; i < (MAX_VAGAS - turma->vagas); i++) {
@@ -287,21 +305,26 @@ void lanca_notas(Turma *turma) {
   }
 }
 
-
+/*
+  Função que imprime os dados de todos os alunos de uma turma.
+*/
 void imprime_alunos(Turma *turma) {
   if (turma->vagas < MAX_VAGAS) {
     for (i = 0; i < (MAX_VAGAS - turma->vagas); i++) {
-      Aluno *aluno = turma->alunos[i];
-      printf("Matricula: %d\n", aluno->mat);
-      printf("Nome: %s\n", aluno->nome);
-      printf("Media: %.1f\n", aluno->media);
+      Aluno *alunos = turma->alunos[i];
+      printf("\n========================================\n");
+      printf("Matricula: %d\n", alunos->mat);
+      printf("Nome: %s\n", alunos->nome);
+      printf("Media: %.1f\n", alunos->media);
     }
   } else {
     printf("Nao ha alunos matriculados na turma %c.\n", turma->id);
   }
 }
 
-
+/*
+  Função que exclui uma turma, caso ela não tenha nenhum aluno.
+*/
 void exclui_turma(Turma **t, int indice) {
   if(t[indice]->vagas == MAX_VAGAS) {
     printf("Turma %c excluida!\n", t[indice]->id);
@@ -309,12 +332,18 @@ void exclui_turma(Turma **t, int indice) {
     free(t[indice]);
 
     for (i = indice; i < count_turmas; i++) {
-      t[i] = t[i+1];
-      if (i == indice - 2) {
+      if (i < count_turmas - 2) {
+        t[i] = t[i+1];
+      }
+      
+      if (i == count_turmas - 2) {
+        t[i] = t[i+1];
         t[i+1] = NULL;
-        free(t[i+1]);   
+        free(t[i+1]); 
       }
     }
+    count_turmas--;
+
   } else {
     printf("Ha alunos matriculados! Nao foi possivel excluir a turma.");
   }
