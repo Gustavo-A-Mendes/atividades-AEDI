@@ -3,11 +3,16 @@
 
 #define MAX 100
 
+typedef union indice {
+  float IG, IRA, IRT;
+} Indices;
+
 typedef struct aluno {
   int mat;
   char nome[81];
   char end[121];
   char tel[21];
+  Indices indice;
 } Aluno;
 
 void inicializa(int, Aluno**);
@@ -32,6 +37,10 @@ int main(void) {
   retira(10, tab, 0);
   retira(10, tab, 1);
   retira(10, tab, 2);
+  imprime_tudo(10, tab);
+  preenche(10, tab, 2);
+  imprime_tudo(10, tab);
+
 
   return 0;
 }
@@ -69,6 +78,25 @@ void preenche (int n, Aluno **tab, int i) {
   scanf(" %120[^\n]", tab[i]->end);
   printf("Entre com o telefone: ");
   scanf(" %20[^\n]", tab[i]->tel);
+
+  int op;
+  printf("\n0 - IG\n1 - IRA\n2 - IRT");
+  printf("\nEscolha um dos indices: ");
+  scanf("%d", &op);
+
+  switch (op) {
+  case 0:
+    printf("Digite o IG: \n");
+    scanf(" %f", &tab[i]->indice.IG); break;
+  case 1:
+    printf("Digite o IRA: \n");
+    scanf(" %f", &tab[i]->indice.IRA); break;
+  case 2:
+    printf("Digite o IRT: \n");
+    scanf(" %f", &tab[i]->indice.IRT); break;
+  default:
+    break;
+  }
 }
 
 /*
@@ -101,7 +129,9 @@ void imprime(int n, Aluno **tab, int i) {
     printf("Matricula: %d\n", tab[i]->mat);
     printf("Nome: %s\n", tab[i]->nome);
     printf("Endereco: %s\n", tab[i]->end);
-    printf("Telefone: %d\n", tab[i]->tel);
+    printf("Telefone: %s\n", tab[i]->tel);
+
+    printf("\nIndice: %.2f\n\n", tab[i]->indice.IG);
   }
 }
 
