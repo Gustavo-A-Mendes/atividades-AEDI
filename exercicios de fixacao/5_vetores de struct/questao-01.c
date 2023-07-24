@@ -93,6 +93,7 @@ void menu(void) {
     printf("7 - Sair\n");
     printf("\nDigite sua opcao: ");
     scanf("%d", &n);
+    fflush(stdin);
 
     int valMAT;
     int indice;
@@ -105,6 +106,7 @@ void menu(void) {
         printf("\nCriando nova turma...\n");
         printf("Digite um id: ");
         scanf(" %1[^\n]", chID);
+        fflush(stdin);
         chID[0] = toupper(chID[0]);
         
         if (count_turmas < 1) {
@@ -131,6 +133,7 @@ void menu(void) {
         printf("\nMatriculando aluno...\n");
         printf("Digite um id da turma: ");
         scanf(" %1[^\n]", chID);
+        fflush(stdin);
         chID[0] = toupper(chID[0]);
         
         turma = procura_turma(turmas, count_turmas, chID[0]);
@@ -138,12 +141,14 @@ void menu(void) {
         if (turma != NULL) {
           printf("Digite a matricula: ");
           scanf("%d", &valMAT);
+          fflush(stdin);
           
           if (procura_aluno(turma, valMAT)) {
             printf("Aluno ja se encontra matriculado!\n");
           } else {
             printf("Digite o nome: ");
             scanf(" %80[^\n]", chNOME);
+            fflush(stdin);
             matricula_aluno(turma, valMAT, chNOME);
           }
         } else {
@@ -155,6 +160,7 @@ void menu(void) {
         printf("\nLancando notas...\n");
         printf("Digite o id da turma: ");
         scanf(" %1[^\n]", chID);
+        fflush(stdin);
         chID[0] = toupper(chID[0]);
 
         turma = procura_turma(turmas, count_turmas, chID[0]);
@@ -167,6 +173,7 @@ void menu(void) {
         printf("\nListando alunos...\n");
         printf("Digite o id da turma: ");
         scanf(" %1[^\n]", chID);
+        fflush(stdin);
         chID[0] = toupper(chID[0]);
 
         turma = procura_turma(turmas, count_turmas, chID[0]);
@@ -179,6 +186,7 @@ void menu(void) {
         printf("\nExcluindo turma...\n");
         printf("Digite o id da turma: ");
         scanf(" %1[^\n]", chID);
+        fflush(stdin);
         chID[0] = toupper(chID[0]);
 
         turma = procura_turma(turmas, count_turmas, chID[0]);
@@ -196,7 +204,7 @@ void menu(void) {
         break;
       
       case 7:
-        printf("\nObrigado por usar este programa!");
+        printf("\nObrigado por usar este programa!\n");
         break;
       
       default:
@@ -367,6 +375,6 @@ void exclui_turma(Turma **t, int indice) {
     count_turmas--;
 
   } else {
-    printf("Ha alunos matriculados! Nao foi possivel excluir a turma.");
+    printf("Ha alunos matriculados! Nao foi possivel excluir a turma.\n");
   }
 }
