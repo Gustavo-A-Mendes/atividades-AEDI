@@ -345,6 +345,7 @@ void lanca_notas(Turma *turma) {
 
 void indice_aluno (Aluno* aluno) {
   int op;
+  printf("\nIndices do Aluno...");
   printf("\n0 - IG\n1 - IRA\n2 - IRT");
   printf("\nEscolha um dos indices: ");
   scanf("%d", &op);
@@ -375,7 +376,7 @@ void imprime_alunos(Turma *turma) {
       printf("Matricula: %d\n", alunos->mat);
       printf("Nome: %s\n", alunos->nome);
       printf("Media: %.2f\n", alunos->media);
-      printf("Indice Academico: %.2f", alunos->indice.IG);
+      printf("Indice Academico: %.2f\n", alunos->indice.IG);
     }
   } else {
     printf("Nao ha alunos matriculados na turma %c.\n", turma->id);
