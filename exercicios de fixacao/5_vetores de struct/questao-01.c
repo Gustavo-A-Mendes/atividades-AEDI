@@ -325,6 +325,7 @@ void lanca_notas(Turma *turma) {
         aluno->notas[j] = 0;
         printf("Digite a nota %d: ", j+1);
         scanf("%f", &(aluno->notas[j]));
+        fflush(stdin);
         aluno->media += aluno->notas[j];
       }
       
