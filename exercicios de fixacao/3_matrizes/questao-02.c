@@ -6,10 +6,13 @@
   e é solicitado ao usuário o número de linhas, colunas, além dos valores para preenchê-las.
 */
 
-int linha, coluna;
+// protótipo da função utilizada:
 int **alocaMatriz(int, int);
 int **transposta(int**, int, int);
 void imprimeMatriz(int**, int, int);
+
+// variáveis globais:
+int linha, coluna;
 
 int main(void) {
 
@@ -48,6 +51,8 @@ int main(void) {
   return 0;
 }
 
+
+// Função que aloca memória dinamicamente:
 int **alocaMatriz(int linhas, int colunas) {
 
   int **m = (int**) calloc(linhas,sizeof(int*));
@@ -55,18 +60,19 @@ int **alocaMatriz(int linhas, int colunas) {
     printf("Erro: alocacao de memoria\n");
     exit(1); //aborta o programa com codigo 1 se nao conseguir
   }
-  int i;
-  for (i = 0; i < linhas; i++) {
-    m[i]=(int*) calloc(colunas,sizeof(int));
-    if (m[i]==NULL) {
+  
+  for (coluna = 0; coluna < linhas; coluna++) {
+    m[coluna]=(int*) calloc(colunas,sizeof(int));
+    if (m[coluna]==NULL) {
       free(m);
-      printf ("Erro na alocação da linha %d.\n", i+1 );
-      exit(-2);// aborta o programa com codigo -2 para indicar erro interno do programador
+      printf ("Erro na alocação da linha %d.\n", coluna+1);
+      exit(1);// aborta o programa com codigo 1 para indicar erro interno do programador
     }
   }
   return m;
 }
 
+// Função que gera a matriz transposta:
 int **transposta(int **m, int L, int C) {
   
   int **mt=alocaMatriz(C, L);
@@ -78,6 +84,7 @@ int **transposta(int **m, int L, int C) {
   return mt;
 }
 
+// Função que imprime a matriz
 void imprimeMatriz (int **m, int L, int C) {
   printf("\n");
   for (linha = 0; linha < L; linha++) {

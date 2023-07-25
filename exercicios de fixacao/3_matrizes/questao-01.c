@@ -20,7 +20,7 @@ int main(void) {
     printf("\nAlocado com sucesso\n");
   }
   
-
+  // Adiciona os valores solitados no vetor:
   printf("\nInsira elementos no vetor\n");
   int contador;
   for (contador = 0; contador < tamanho; contador++) {

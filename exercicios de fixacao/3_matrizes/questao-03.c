@@ -44,7 +44,7 @@ int main(void) {
   return 0;
 }
 
-
+// Função que aloca memória dinamicamente para a matriz:
 int **alocaMatrizQ(int tamanho) {
 
   int **m = (int**) calloc(tamanho,sizeof(int*));
@@ -64,6 +64,7 @@ int **alocaMatrizQ(int tamanho) {
   return m;
 }
 
+// Função que imprime a matriz:
 void imprimeMatriz (int **m, int tamanho) {
   printf("\n");
   for (linha = 0; linha < tamanho; linha++) {

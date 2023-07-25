@@ -343,6 +343,10 @@ void lanca_notas(Turma *turma) {
   }
 }
 
+
+/*
+  Função para adicionar
+*/
 void indice_aluno (Aluno* aluno) {
   int op;
   printf("\nIndices do Aluno...");
