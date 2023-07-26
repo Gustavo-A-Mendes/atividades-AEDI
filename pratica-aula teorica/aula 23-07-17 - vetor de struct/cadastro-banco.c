@@ -1,7 +1,11 @@
-// Programa que manipula dados de uma pessoa e armazena em uma struct, utilizando ponteiros
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+  Programa que manipula dados de uma pessoa e armazena em uma struct, utilizando ponteiros
+*/
+
+// declaração do tipo estruturado:
 typedef struct conta {
 
   char nome[20];
@@ -12,9 +16,11 @@ typedef struct conta {
 
 } ContaBancaria;
 
+// protótipo das funções usadas:
 ContaBancaria *cadastraConta(ContaBancaria *);
 void imprimeConta(ContaBancaria *);
 
+// variáveis globais:
 int i;
 int numConta;
 
@@ -30,6 +36,7 @@ int main(void) {
   return 0;
 }
 
+// função que lê os dados para o cadastro da conta
 ContaBancaria *cadastraConta(ContaBancaria *var_conta) {
 
   var_conta = (ContaBancaria *)malloc(numConta*sizeof(ContaBancaria));
@@ -56,6 +63,7 @@ ContaBancaria *cadastraConta(ContaBancaria *var_conta) {
   return var_conta;
 }
 
+// função que imprime os dados preenchidos na struct
 void imprimeConta(ContaBancaria *var_conta) {
   printf("Os dados informados:\n");
   for (i = 0; i < numConta; i++) {

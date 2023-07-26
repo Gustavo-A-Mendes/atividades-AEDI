@@ -1,6 +1,10 @@
-// Programa que manipula dados de uma pessoa e armazena em uma struct
 #include <stdio.h>
 
+/*
+  Programa que manipula dados de uma pessoa e armazena em uma struct
+*/
+
+// declaração do tipo estruturado:
 typedef struct pessoa {
 
   char nome[20];
@@ -14,6 +18,7 @@ typedef struct pessoa {
 int main(void) {
   Pessoa var_pessoa[3];
   
+  // laço que solicita dados para preencher struct para cada pessoa e os imprime:
   int i;
   for (i = 0; i < 3; i++) {
     printf("\n====== PESSOA %d ======\n", i+1);
