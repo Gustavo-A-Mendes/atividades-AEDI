@@ -1,0 +1,1 @@
+QUESTÃO 02: Considerando que o tipo int ocupa 4 bytes de espaço, e cada endereço possui 1 byte de tamanho, cada incremento na operação de ponteiros será equivalente a 4 endereços, portanto, v+3 será 55000 + 3*(sizeof(int)) = 55000 + 12 = 55012.

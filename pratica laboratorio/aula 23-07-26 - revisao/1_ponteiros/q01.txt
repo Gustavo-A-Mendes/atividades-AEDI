@@ -1,0 +1,3 @@
+QUESTÃO 01: Em um vetor v, a expressão “v[2]” acessa o elemento contido no índice 2 do vetor. Já “v+2” faz referência ao endereço da memória em que esse conteúdo está guardado, pois o vetor v já identifica o endereço da sua primeira posição.
+
+
