@@ -16,7 +16,7 @@ Atividades relacionadas a disciplina de Algoritmos e Estrutura de Dados I e Labo
       <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/exercicios%20de%20fixacao/6_struct%20union%20e%20enum">Revisão: Struct, Union e Enum</a></li>
     </ul>
     <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/exercicios-w3resources">Exercícios da w3resources</a></li>
-    <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/pratica-aula%20teorica/aula%2023-07-18">(Exercício) Vetor de ponteiros para estruturas</a></li>
+    <li><a href="https://github.com/Gustavo-A-Mendes/atividades-AEDI/tree/main/pratica-aula%20teorica/unidade-1/aula%2023-07-18">(Exercício) Vetor de ponteiros para estruturas</a></li>
   </ol>
 </div>
 
