@@ -64,13 +64,13 @@ Frutas *busca_fruta(Frutas** frutas, int tamanho) {
 
   int i, j, igual;
   for (i = 0; i < tamanho; i++) {
+    igual = 1;
     for (j = 0; nome[j] != '\0' && frutas[i]->nome[j] != '\0'; j++) {
       // printf("%c\t %c\n", nome[j], frutas[i]->nome[j]);
       if (nome[j] != frutas[i]->nome[j]) {
         igual = 0;
         break;
       }
-      igual = 1;
     }
     
     if (igual) {
