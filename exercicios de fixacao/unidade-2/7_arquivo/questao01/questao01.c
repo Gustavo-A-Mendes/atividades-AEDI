@@ -9,7 +9,7 @@ int main(void) {
 
   float nota1, nota2, nota3, media;
   
-  FILE * arquivo_notas = fopen("entrada_q3.txt", "rt");
+  FILE * arquivo_notas = fopen("entrada_q1.txt", "rt");
   if (arquivo_notas == NULL) {
     printf("\nErro ao abrir o arquivo!\n");
     exit(1);
@@ -32,7 +32,7 @@ int main(void) {
     fscanf(arquivo_notas, "%50[^\t]\t%f\t%f\t%f", nome, &nota1, &nota2, &nota3);
     media = (nota1 + nota2 + nota3) / 3;
 
-    fprintf(saida, "%s\t%.2f\t %s", nome, media, (media>=7.0)? "Aprovado" : "Reprovado"); // escreve strings e variáveis em qualquer formatação
+    fprintf(saida, "%s\t%.1f\t %s", nome, media, (media>=7.0)? "Aprovado" : "Reprovado"); // escreve strings e variáveis em qualquer formatação
 
     // printf("%s\t%.2f\t%.2f\t%.2f\t\t%.2f", nome, nota1, nota2, nota3);
   }

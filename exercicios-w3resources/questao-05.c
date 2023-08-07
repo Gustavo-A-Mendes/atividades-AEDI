@@ -2,7 +2,7 @@
 
 long soma (long *, long *); // protótipo da função declarada após o main
 
-long main(void) {
+int main(void) {
   long num1, num2, sum;
   long *p1 = &num1, *p2 = &num2;
 
