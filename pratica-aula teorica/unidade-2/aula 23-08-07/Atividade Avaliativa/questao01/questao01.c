@@ -1,18 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-#define MAX_FUNC 10
 
 typedef struct funcionario {
   char funcional[3];
-  char nome[21];
+  char nome[20];
   char departamento;
   float salario;
 
 } Funcionario;
 
-Funcionario *pessoal[MAX_FUNC];
 
 // protótipo das funções:
 void copia_dados(FILE*, int, Funcionario**);
@@ -23,46 +19,41 @@ int i;
 
 int main(void) {
   
+  int num_func;
+
   FILE *func = fopen("funcionarios.txt", "rt");
-  if (func == NULL) {
-    printf("\nErro ao abrir o arquivo!\n");
-    exit(1);
-  } else {
-    printf("\nArquivo aberto com sucesso!\n");
-  }
+  if (func == NULL) exit(1);
 
+  fscanf(func, "%d", &num_func);
+  // printf("%d\n", num_func);
 
-  for (i = 0; i < MAX_FUNC; i++) {
-    pessoal[i] = (Funcionario*)malloc(sizeof(Funcionario));
-  }
+  Funcionario **pessoal = (Funcionario**)malloc(num_func*sizeof(Funcionario*));
+  if (pessoal == NULL) exit(1);
   
-  copia_dados(func, MAX_FUNC, pessoal);
+  copia_dados(func, num_func, pessoal);
 
-  imprime_folha_pagamento(3, pessoal, 'A');
-  imprime_folha_pagamento(4, pessoal, 'B');
-  imprime_folha_pagamento(3, pessoal, 'C');
+  imprime_folha_pagamento(num_func, pessoal, 'A');
+  imprime_folha_pagamento(num_func, pessoal, 'B');
+  imprime_folha_pagamento(num_func, pessoal, 'C');
 
-  // printf("oi\n");
-  // for (i = 0; i < MAX_FUNC; i++) {
-  //   printf("%s\t%s\t%c\t%.2f\n", pessoal[i]->funcional, pessoal[i]->nome, pessoal[i]->departamento, pessoal[i]->salario);
-  // }
-  // float nota1, nota2, nota3, media;
-  
   fclose(func);
+
+  for (i = 0; i < num_func; i++) {
+    free(pessoal[i]);
+  }
+  free(pessoal);
   
   return 0;
 }
 
 void copia_dados(FILE *fl, int n, Funcionario **pessoal) {
-
   i = 0;
-  // Leitura dos dados do arquivo:
-  while (!feof(fl)) {    // feof(FILE *fp) retorna 0 quanto o cursor chegar no fim do arquivo 
-
-    fscanf(fl, "%s\t%s\t%c\t%f", pessoal[i]->funcional, pessoal[i]->nome, &pessoal[i]->departamento, &pessoal[i]->salario);
-    // printf("%d\n", valor[i]);
+  while (i < n) {
+    // Leitura dos dados do arquivo:
+    pessoal[i] = (Funcionario*)malloc(sizeof(Funcionario));
+    if (pessoal[i] == NULL) exit(1);
+    fscanf(fl, "%3[^\t]\t%21[^\t]\t%c\t%f", pessoal[i]->funcional, pessoal[i]->nome, &pessoal[i]->departamento, &pessoal[i]->salario);
     i++;
-
   }
 }
 
@@ -71,12 +62,12 @@ void imprime_folha_pagamento(int n, Funcionario** pessoal, char depto) {
   float soma = 0;
 
   printf("FOLHA DE PAGAMENTO DEPTO %c\n", depto);
-  printf("%-15s%-15s%-15s%-s\n", "FUNCIONAL", "NOME", "DEPTO", "SALARIO");
-  for (i = 0; i < MAX_FUNC; i++) {
+  printf("%-10s\t%-20s\t%-10s\t%-s", "FUNCIONAL", "NOME", "DEPTO", "SALARIO");
+  for (i = 0; i < n; i++) {
     if (pessoal[i]->departamento == depto) {
-      printf("%-15s%-15s%-15c%-.2f\n", pessoal[i]->funcional, pessoal[i]->nome, pessoal[i]->departamento, pessoal[i]->salario);
+      printf("%-10s\t%-20s\t%-10c\t%-.2f", pessoal[i]->funcional, pessoal[i]->nome, pessoal[i]->departamento, pessoal[i]->salario);
       soma = soma + pessoal[i]->salario;
     }
   }
-  printf("VALOR TOTAL PAGAMENTO: R$ %.2f\n\n", soma);
+  printf("\nVALOR TOTAL PAGAMENTO: R$ %.2f\n\n", soma);
 }

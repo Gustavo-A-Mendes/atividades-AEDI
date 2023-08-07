@@ -1,3 +1,4 @@
+10
 A1	Ana	A	800.00
 A2	Beatriz	A	800.00
 A3	Bruno	A	1000.00
