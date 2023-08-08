@@ -4,11 +4,21 @@
 #include <ctype.h>
 
 
-void copia_dados(FILE*);
+#define MAX_FRUTA 100
+
+typedef struct frutas {
+  char nome[21];
+  float preco;
+} Frutas;
+
+
+void copia_dados(FILE*, Frutas**);
 
 int i;
 
 int main(void) {
+
+  Frutas** var_frutas = (Frutas**)malloc(MAX_FRUTA*sizeof(Frutas*));
 
   FILE *saida = fopen("frutas.txt", "wt");
   if (saida == NULL) {
@@ -18,7 +28,7 @@ int main(void) {
     printf("\nArquivo aberto com sucesso!\n");
   }
 
-  copia_dados(saida);
+  copia_dados(saida, var_frutas);
 
   fclose(saida);
 
@@ -43,22 +53,23 @@ int main(void) {
 }
 
 
-void copia_dados(FILE *fl) {
+void copia_dados(FILE *fl, Frutas** frutas) {
   
   fprintf(fl, "%s,%s\n", "NOME", "PRECO");
 
   while (1) {
     int count_fruta = 0;
-    char nome[21], resp[2];
-    float preco;
+    char resp[2];
+
+    frutas[i] = (Frutas*)malloc(sizeof(Frutas));
 
     printf("\n===== Fruta %d =====\n", i+1);
     printf("Insira o nome: ");
-    scanf(" %20[^\n]", nome);
+    scanf(" %20[^\n]", frutas[i]->nome);
     printf("Insira o preco: ");
-    scanf("%f", &preco);
+    scanf("%f", &frutas[i]->preco);
 
-    fprintf(fl, "%s,%-.2f\n", nome, preco);
+    fprintf(fl, "%s,%-.2f\n", frutas[i]->nome, frutas[i]->preco);
 
     printf("\nDeseja continuar? [S / N]\n");
     scanf(" %1[^\n]", resp);
