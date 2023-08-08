@@ -1,0 +1,4 @@
+NOME                          	NOTA P1	NOTA P2	NOTA P3
+Gustavo                       	1.0  	2.0  	3.0
+Marcos                        	4.0  	5.0  	6.0
+Antonio                       	10.0 	10.0 	10.0
