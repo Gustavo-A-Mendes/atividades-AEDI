@@ -1,5 +1,6 @@
 NOME,PRECO
-Maca,2.00
-Pera,4.00
-Uva,10.00
-carambola,5.00
+a,3.00
+b,2.00
+c,3.20
+pera,1.75
+maca,4.50
