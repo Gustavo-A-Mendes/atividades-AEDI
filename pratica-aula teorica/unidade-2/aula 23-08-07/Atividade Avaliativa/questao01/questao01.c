@@ -52,8 +52,13 @@ void copia_dados(FILE *fl, int n, Funcionario **pessoal) {
     // Leitura dos dados do arquivo:
     pessoal[i] = (Funcionario*)malloc(sizeof(Funcionario));
     if (pessoal[i] == NULL) exit(1);
-    fscanf(fl, "%3[^\t]\t%21[^\t]\t%c\t%f", pessoal[i]->funcional, pessoal[i]->nome, &pessoal[i]->departamento, &pessoal[i]->salario);
+
+    fscanf(fl, " %2[^\t]\t%21[^\t]\t%c\t%f", pessoal[i]->funcional, pessoal[i]->nome, &pessoal[i]->departamento, &pessoal[i]->salario);
+
+    // printf("%s\t%s\t%c\t%.2f\n", pessoal[i]->funcional, pessoal[i]->nome, pessoal[i]->departamento, pessoal[i]->salario);
     i++;
+    
+
   }
 }
 
@@ -62,10 +67,10 @@ void imprime_folha_pagamento(int n, Funcionario** pessoal, char depto) {
   float soma = 0;
 
   printf("FOLHA DE PAGAMENTO DEPTO %c\n", depto);
-  printf("%-10s\t%-20s\t%-10s\t%-s", "FUNCIONAL", "NOME", "DEPTO", "SALARIO");
+  printf("%-10s\t%-20s\t%-10s\t%-s\n", "FUNCIONAL", "NOME", "DEPTO", "SALARIO");
   for (i = 0; i < n; i++) {
     if (pessoal[i]->departamento == depto) {
-      printf("%-10s\t%-20s\t%-10c\t%-.2f", pessoal[i]->funcional, pessoal[i]->nome, pessoal[i]->departamento, pessoal[i]->salario);
+      printf("%-10s\t%-20s\t%-10c\t%-.2f\n", pessoal[i]->funcional, pessoal[i]->nome, pessoal[i]->departamento, pessoal[i]->salario);
       soma = soma + pessoal[i]->salario;
     }
   }
