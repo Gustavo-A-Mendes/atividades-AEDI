@@ -1,0 +1,4 @@
+NOME                          	NOTA P1   	NOTA P2   	NOTA P3
+Astolfo                       	10.0      	7.0       	8.5
+Gustavo mendes                	10.0      	9.0       	8.0
+Nataniel Elrik                	5.0       	9.0       	9.7

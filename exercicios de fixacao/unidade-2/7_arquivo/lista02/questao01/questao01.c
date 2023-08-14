@@ -1,19 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-typedef struct funcionario {
-  
-  int id;
-  char nome[31];
-  float salario;
-
-} Funcionario;
-
-void preenche_dados(Funcionario**, int);
-void copia_dados(FILE*, Funcionario**, int);
-
-int i;
+#include "funcionario.h"
 
 int main(void) {
 
@@ -41,7 +29,8 @@ int main(void) {
   preenche_dados(var_func, qtd_func);
 
   copia_dados(saida, var_func, qtd_func);
-
+  
+  int i = 0;
   for (i = 0; i < qtd_func; i++) {
     free(var_func[i]);
   }
@@ -62,32 +51,4 @@ int main(void) {
   
 
   return 0;
-}
-
-
-void preenche_dados(Funcionario** func, int num_func) {
-
-  for (i = 0; i < num_func; i++) {
-    
-    func[i] = (Funcionario*)malloc(sizeof(Funcionario));
-
-    printf("\n===== FUNCIONARIO %d =====\n", i+1);
-
-    printf("Insira o ID: ");
-    scanf("%d", &func[i]->id);
-    printf("Insira o nome: ");
-    scanf(" %30[^\n]", func[i]->nome);
-    printf("Insira o salario do funcionario: ");
-    scanf("%f", &func[i]->salario);
-    
-  }
-}
-
-void copia_dados(FILE *fl, Funcionario **func, int num_func) {
-
-  fprintf(fl, "%-5s\t%-35s\t%-s\n", "ID", "NOME", "SALARIO");
-
-  for (i = 0; i < num_func; i++)  {
-    fprintf(fl, "%-5d\t%-30s\t%-.2f\n", func[i]->id, func[i]->nome, func[i]->salario);
-  }
 }
