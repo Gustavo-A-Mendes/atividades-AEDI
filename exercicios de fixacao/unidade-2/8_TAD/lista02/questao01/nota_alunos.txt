@@ -1,0 +1,5 @@
+dominique                     	5.50
+gustavo                       	10.00
+matheus                       	8.00
+zaraldo                       	9.90
+ziraldo                       	6.90
