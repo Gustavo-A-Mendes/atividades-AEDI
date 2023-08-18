@@ -10,11 +10,11 @@ struct disciplina {
   int codigo;
 };
 
-Disciplina *disciplinas[MAX_DISCIPLINA];
+int count_disc = 0;
 
 Disciplina *cria_disciplina(char *nome, int codigo) {
   
-  Disciplina *disc = (Disciplina*)malloc(sizeof(Disciplina));
+  Disciplina *disc = (Disciplina*)calloc(1,sizeof(Disciplina));
   if (disc == NULL) exit(1);
   else printf("\nDisciplina criada com sucesso!\n");
 
@@ -24,13 +24,12 @@ Disciplina *cria_disciplina(char *nome, int codigo) {
   return disc;
 }
 
-Disciplina *procura_disciplina(Disciplina **disciplinas, int cod) {
+Disciplina *procura_disciplina(Disciplina **disciplinas, int cod, int n) {
   int i;
-  for (i = 0; i < MAX_DISCIPLINA; i++) {
+  for (i = 0; i < n; i++) {
     if (disciplinas[i] != NULL && disciplinas[i]->codigo == cod)
       return disciplinas[i];
   }
-  printf("\nNao foi encontrada nenhuma disciplina com essa codigo\n");
   return NULL;
 }
 

@@ -14,7 +14,17 @@ Aluno *cria_aluno(char *nome, int matricula);
 
 /* Função matricula_disciplina
 */
-void matricula_disciplina(Aluno *conta, Disciplina *disciplina);
+void matricula_disciplina(Aluno *aluno, Disciplina *disciplina);
+
+/* Função procura_aluno
+  
+*/
+Aluno *procura_aluno(Aluno **alunos, int mat, int n);
+
+/* Função lista_alunos
+
+*/
+void lista_alunos(Aluno **alunos, int n);
 
 /* Função exclui_aluno
 */

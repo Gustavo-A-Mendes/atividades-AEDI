@@ -1,4 +1,4 @@
-/* TAD: disciplina(nome, codigo) */
+/* TAD: Disciplina(nome, codigo) */
 
 /* Tipo exportado */
 typedef struct disciplina Disciplina;
@@ -14,7 +14,7 @@ Disciplina *cria_disciplina(char *nome, int codigo);
 /* Função procura_disciplina
   
 */
-Disciplina *procura_disciplina(Disciplina **disciplinas, int cod);
+Disciplina *procura_disciplina(Disciplina **disciplinas, int cod, int n);
 
 /* Função excluir_conta
   exclui a conta, liberando espaço da memória
