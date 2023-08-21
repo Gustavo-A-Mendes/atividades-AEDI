@@ -40,15 +40,15 @@ void aluno_ordena(int n, Aluno** v) {
   Aluno *alu_teste;
   
   int i, j;
-  for (i = 0; i < n; i++) {
-    // alu_teste = v[i];
-    for (j = 0; j < n; j++) {
-      if (confere_ordem(v[j]->nome, v[i]->nome)) {
-        alu_teste = v[i];
-        v[i] = v[j];
-        v[j] = alu_teste;
-      }
-    }    
+  for (i = 1; i < n; i++) {
+    alu_teste = v[i];
+    j = i - 1;
+
+    while (j >= 0 && confere_ordem(v[j]->nome, alu_teste->nome)) {
+        v[j+1] = v[j];
+        j -= 1;
+    }
+    v[j + 1] = alu_teste;
   }
 }
 
