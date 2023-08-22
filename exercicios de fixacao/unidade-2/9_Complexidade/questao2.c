@@ -32,4 +32,4 @@ int main () {
 // Notação Big O: O(n)
 
 // Complexidade de espaço:
-// S(n) = (n - 7)B
+// S(n) = 8 * 4Bytes = constante 
