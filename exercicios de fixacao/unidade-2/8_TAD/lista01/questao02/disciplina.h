@@ -12,7 +12,8 @@ typedef struct disciplina Disciplina;
 Disciplina *cria_disciplina(char *nome, int codigo);
 
 /* Função procura_disciplina
-  
+  faz uma varredura nas disciplinas criadas em busca da
+  disciplina selecionada, a partir do seu código
 */
 Disciplina *procura_disciplina(Disciplina **disciplinas, int cod, int n);
 
