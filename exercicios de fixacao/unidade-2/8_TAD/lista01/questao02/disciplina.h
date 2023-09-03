@@ -5,19 +5,29 @@ typedef struct disciplina Disciplina;
 
 /* Funções exportadas */
 
-/* Função cria_disciplina
-  cria uma nova disciplina, alocando espaço na memória e
-  preenchendo os parâmetros
+/* Função disc_cria
+cria uma nova disciplina, alocando espaço na memória e
+preenchendo os parâmetros
 */
-Disciplina *cria_disciplina(char *nome, int codigo);
+Disciplina *disc_cria(char *nome, int codigo);
 
-/* Função procura_disciplina
-  faz uma varredura nas disciplinas criadas em busca da
-  disciplina selecionada, a partir do seu código
+/* Função disc_codigo
+retorna o código da disciplina
 */
-Disciplina *procura_disciplina(Disciplina **disciplinas, int cod, int n);
+int disc_codigo(Disciplina *disc);
 
-/* Função excluir_conta
-  exclui a conta, liberando espaço da memória
+/* Função disc_procura
+faz uma varredura nas disciplinas criadas em busca da
+disciplina selecionada, a partir do seu código
 */
-void excluir_disciplina(Disciplina* disciplina);
+Disciplina *disc_procura(Disciplina **disciplinas, int cod, int n);
+
+/* Função disc_lista
+imprime os dados das disciplinas criadas no sistema
+*/
+void disc_lista(Disciplina **disc, int count);
+
+/* Função disc_exclui
+  exclui a disciplina, liberando espaço da memória
+*/
+void disc_exclui(Disciplina *disciplina);

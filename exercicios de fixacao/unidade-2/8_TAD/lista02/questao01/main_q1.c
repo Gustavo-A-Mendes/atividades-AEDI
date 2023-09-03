@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "aluno.h"
 
-#define MAX_ALUNO 10
+#define MAX_ALUNO 5
 
 int main(void) {
   int i, count_alu=0;
@@ -15,7 +15,9 @@ int main(void) {
   if (alunos == NULL) exit(1);
 
   do {
-    printf("\nInforme o nome do aluno: ");
+    printf("\n===== ALUNO %d =====\n", count_alu+1);
+
+    printf("Informe o nome do aluno : ");
     scanf(" %30[^\n]", nome_alu);
     fflush(stdin);
 
@@ -25,13 +27,6 @@ int main(void) {
 
     alunos[count_alu] = aluno_cria(nome_alu, nota_alu);
     count_alu++;
-    printf("%d\n",count_alu);
-    char test[2];
-    printf("\nDeseja continuar [S/N]? ");
-    scanf(" %1c", test);
-    fflush(stdin);
-
-    if (toupper(test[0]) == 'N') break;
 
   } while (count_alu < MAX_ALUNO);
   
@@ -41,6 +36,10 @@ int main(void) {
   
   aluno_ordena(count_alu, alunos);
   
+  for (i = 0; i < count_alu; i++) {
+    aluno_imprime(alunos[i]);
+  }
+
   char nome_arquivo[51];
   printf("\nInforme o nome do arquivo: ");
   scanf(" %50[^\n]", nome_arquivo);
@@ -60,6 +59,7 @@ int main(void) {
     free(alunos[i]);
   }
   free(alunos);
+  fclose(saida);
 
   return 0;
 }

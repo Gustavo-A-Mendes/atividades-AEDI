@@ -8,28 +8,28 @@ typedef struct aluno Aluno;
 
 /* Funções exportadas */
 
-/* Função cria_aluno
-  cadastra um novo aluno, inicializando e alocando espaço na memória
+/* Função alu_cria
+cadastra um novo aluno, inicializando e alocando espaço na memória
 */
-Aluno *cria_aluno(char *nome, int matricula);
+Aluno *alu_cria(char *nome, int matricula);
 
-/* Função matricula_disciplina
-  matricula o aluno em uma disciplina
+/* Função alu_matricula
+matricula o aluno em uma disciplina
 */
-void matricula_disciplina(Aluno *aluno, Disciplina *disciplina);
+void alu_matricula(Aluno *aluno, Disciplina *disciplina);
 
-/* Função procura_aluno
-  faz uma varredura nos alunos cadastrados em busca do
-  aluno selecionado, a partir de sua matrícula
+/* Função alu_procura
+faz uma varredura nos alunos cadastrados em busca do
+aluno selecionado, a partir de sua matrícula
 */
-Aluno *procura_aluno(Aluno **alunos, int mat, int n);
+Aluno *alu_procura(Aluno **alunos, int mat, int n);
 
-/* Função lista_alunos
-  imprime os dados dos alunos cadastrados no sistema
+/* Função alu_lista
+imprime os dados dos alunos cadastrados no sistema
 */
-void lista_alunos(Aluno **alunos, int n);
+void alu_lista(Aluno **alunos, int n);
 
-/* Função exclui_aluno
-  limpa os dados de um aluno, liberando o espaço da memória.
+/* Função alu_exclui
+limpa os dados de um aluno, liberando o espaço da memória.
 */
-void exclui_aluno(Aluno* aluno);
+void alu_exclui(Aluno *aluno);

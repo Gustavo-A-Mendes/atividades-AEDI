@@ -6,7 +6,8 @@
     "stdlib.h": "c",
     "ctype.h": "c",
     "disciplina.h": "c",
-    "aluno.h": "c"
+    "aluno.h": "c",
+    "matriz_simples.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "[c]": {
