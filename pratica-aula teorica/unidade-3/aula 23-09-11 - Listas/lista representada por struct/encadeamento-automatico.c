@@ -15,30 +15,31 @@ Frutas *insere_fruta(Frutas *fruta, char* nome, float preco) {
     // printf("%p\n", nova_fruta);
 
     strcpy(nova_fruta->nome, nome);
-    // nova_fruta->preco = preco;
-    // nova_fruta->proxima = fruta;
+    nova_fruta->preco = preco;
+    nova_fruta->proxima = fruta;
     
-    // return nova_fruta;
+    return nova_fruta;
     
-    static Frutas *fruta_atual;
-    nova_fruta->proxima = NULL;
+    // static Frutas *fruta_atual;
+    // strcpy(nova_fruta->nome, nome);
+    // nova_fruta->proxima = NULL;
     
-    if (fruta == NULL) {
-        fruta = nova_fruta;
-        fruta_atual = nova_fruta;
+    // if (fruta == NULL) {
+    //     fruta = nova_fruta;
+    //     fruta_atual = nova_fruta;
         
-    } else {
-        fruta_atual->proxima = nova_fruta;
-    }
+    // } else {
+    //     fruta_atual->proxima = nova_fruta;
+    // }
     
-    fruta_atual = nova_fruta;
-    return fruta;
+    // fruta_atual = nova_fruta;
+    // return fruta;
 }
 
 void imprime_frutas(Frutas *fruta) {
     struct frutas* p;
     for (p = fruta; p != NULL; p = p->proxima) {
-        printf("%s\n", p->nome);
+        printf("%s\t%.2f\n", p->nome, p->preco);
     }
 }
 
