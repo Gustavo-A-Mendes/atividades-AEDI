@@ -7,7 +7,8 @@
     "ctype.h": "c",
     "disciplina.h": "c",
     "aluno.h": "c",
-    "matriz_simples.h": "c"
+    "matriz_simples.h": "c",
+    "corecrt.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "[c]": {
